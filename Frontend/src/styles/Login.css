@@ -1,0 +1,23 @@
+.input-style{
+    @apply bg-white w-full h-16 rounded-lg p-4 text-lg outline-none border-2 border-[#ffc71f69] focus:border-[#FFC71F]
+}
+
+.label-style{
+    @apply absolute transform translate-x-2 -translate-y-2 text-sm text-[#FFC71F] bg-white px-1 transition-all peer-placeholder-shown:text-lg 
+    peer-placeholder-shown:transform 
+    peer-placeholder-shown:translate-x-4 
+    peer-placeholder-shown:translate-y-4 
+    peer-placeholder-shown:text-gray-600 
+    
+    [&:not(peer-placeholder-shown)]:transform 
+    [&:not(peer-placeholder-shown)]:translate-x-2 
+    [&:not(peer-placeholder-shown)]:-translate-y-2 
+    [&:not(peer-placeholder-shown)]:text-sm 
+    [&:not(peer-placeholder-shown)]:text-[#FFC71F] 
+    [&:not(peer-placeholder-shown)]:bg-white 
+    [&:not(peer-placeholder-shown)]:px-1
+}
+
+.submit-button{
+    @apply flex self-end border-2 border-[#FFC71f] bg-[#FFC71F] text-xl px-8 py-2.5 rounded-md font-medium hover:bg-transparent cursor-pointer transition-all duration-200 hover:text-[#ffc71f]
+}
