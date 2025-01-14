@@ -1,8 +1,12 @@
+import useUserAuth from "../state/useAuth";
 
 function LoginDashboard() {
+  const { isAuthenticated, userName, logout } = useUserAuth();
   return (
-    <div>LoginDashboard</div>
-  )
+    <div>
+      {isAuthenticated ? <div>Welcome {userName}</div> : <p>Please Login</p>}
+    </div>
+  );
 }
 
-export default LoginDashboard
+export default LoginDashboard;

@@ -19,5 +19,5 @@
 }
 
 .submit-button{
-    @apply flex self-end border-2 border-[#FFC71f] bg-[#FFC71F] text-xl px-8 py-2.5 rounded-md font-medium hover:bg-transparent cursor-pointer transition-all duration-200 hover:text-[#ffc71f]
+    @apply flex  border-2 border-[#FFC71f] bg-[#FFC71F] text-xl px-8 py-2.5 rounded-md font-medium hover:bg-transparent cursor-pointer transition-all duration-200 hover:text-[#ffc71f]
 }

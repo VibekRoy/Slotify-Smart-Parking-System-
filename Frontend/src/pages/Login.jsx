@@ -2,8 +2,18 @@ import { useForm } from "react-hook-form";
 import "../styles/Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useUserAuth from "../state/useAuth";
+import { useEffect, useState } from "react";
 function Login() {
   const navigate = useNavigate();
+  const [loginError, setLoginError] = useState("");
+  const login = useUserAuth((state) => state.login);
+  const { isAuthenticated } = useUserAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/dashboard");
+  }, [isAuthenticated, navigate]);
+
   const apiUrl = import.meta.env.VITE_API_URL;
   const {
     register,
@@ -23,8 +33,19 @@ function Login() {
         }
       )
       .then((res) => {
-        if (res.status === 200) navigate("/dashboard");
+        if (res.status === 200) {
+          login(res.data.user);
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) => {
+        if (err.status === 401 || err.status === 404)
+          setLoginError(err.response.data.message);
       });
+  };
+
+  const handleSignup = () => {
+    navigate("/signup");
   };
   return (
     <div className="h-screen w-screen flex">
@@ -34,7 +55,7 @@ function Login() {
           <div>
             <p className="text-3xl font-semibold pb">Login</p>
             <p className="text-gray-600 text-lg pb-8">
-              Please enter your login details
+              Access your spot—log in now! 🅿️🚀
             </p>
           </div>
           <form
@@ -90,12 +111,27 @@ function Login() {
                   {errors.password.message}
                 </p>
               )}
+              {<p className="text-red-500 text-sm mt-1 ml-5">{loginError}</p>}
             </div>
-            <button className="submit-button" type="submit">
-              Login
-            </button>
+            <div className="flex justify-between items-center">
+              <p className="hover:underline pl-1 cursor-pointer text-zinc-800 ">
+                Forgot Password ?
+              </p>
+              <button className="submit-button self-start" type="submit">
+                Login
+              </button>
+            </div>
           </form>
+          <div className="pt-12 flex flex-col items-start">
+          <p className="pb-3 text-gray-600 text-lg">
+            No account? No problem—register now and park smarter! 🅿️🚀
+          </p>
+          <button className="submit-button" onClick={handleSignup}>
+            Signup
+          </button>
         </div>
+        </div>
+        
       </div>
     </div>
   );

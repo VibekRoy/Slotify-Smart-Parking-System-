@@ -6,8 +6,3 @@
     @apply border-2 border-[#FFC71F] px-6 py-2 text-zinc-950 font-bold bg-[#FFC71F] hover:bg-[#ffc71fa8] hover:border-[#ffc71fa8]  transition duration-300 cursor-pointer rounded-3xl
 }
 
-.fade-from-bottom {
-    width: 100%; /* Adjust width as needed */
-    height: auto; /* Maintain aspect ratio */
-   
-  }
