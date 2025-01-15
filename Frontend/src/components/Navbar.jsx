@@ -18,7 +18,7 @@ function Navbar() {
     } else navigate("/login");
   };
   return (
-    <div className="text-md  flex items-center justify-between px-8 py-4">
+    <div className="text-md  flex items-center justify-between px-8 py-4 h-[8%]">
       <div className="w-[200px] cursor-pointer" onClick={() => navigate("/")}>
         <img src="../src/assets/logo.png" alt="Slotify-Logo" />
       </div>

@@ -34,7 +34,7 @@ function Dashboard() {
       </div>
 
       <div className="w-full flex flex-col">
-        <div className="text-center text-4xl font-bold pb-2 pt-10">
+        <div className="text-center text-4xl font-bold pb-10 pt-16">
           BOOK A SLOT TODAY
         </div>
 
@@ -118,8 +118,6 @@ function Dashboard() {
           </div>
         </form>
       </div>
-
-
     </div>
   );
 }
