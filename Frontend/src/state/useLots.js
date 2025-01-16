@@ -6,6 +6,9 @@ const useLots = create((set) => ({
 
   selectedLot: null,
   setSelectedLot: (selectedLot) => set({ selectedLot }),
+
+  directions: null,
+  setDirections: (directions) => set({ directions }),
 }));
 
 export default useLots;
