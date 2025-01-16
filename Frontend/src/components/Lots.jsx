@@ -69,9 +69,11 @@ function Lots() {
             duration={lot.duration}
             index={index + 1}
             price={lot.price}
+            bikePrice={lot.bikePrice}
             address={lot.address}
             latitude={lot.location.coordinates[0]}
             longitude={lot.location.coordinates[1]}
+            id={lot._id}
           />
         ))}
       </div>
