@@ -7,7 +7,7 @@ import useLots from "../state/useLots";
 function Lots() {
   const apiUrl = import.meta.env.VITE_API_URL;
   const location = useLocationStore((state) => state.location);
-  const setLot = useLots((state) => state.setLots);
+  const setLots = useLots((state) => state.setLots);
   const lots = useLots((state) => state.lots);
   useEffect(() => {
     const fetchLots = async () => {
@@ -42,7 +42,7 @@ function Lots() {
           }));
 
           updatedDetails.sort((a, b) => a.distanceValue - b.distanceValue);
-          setLot(updatedDetails);
+          setLots(updatedDetails);
         } catch (error) {
           console.error("Error getting distances:", error.message);
         }
@@ -54,7 +54,7 @@ function Lots() {
     if (location) {
       fetchLots();
     }
-  }, [apiUrl, location, setLot]);
+  }, [apiUrl, location, setLots]);
   return (
     <div className="pl-12 pr-12 w-full">
       <div className="text-3xl font-semibold pt-6 pb-4 pl-2">
@@ -74,6 +74,8 @@ function Lots() {
             latitude={lot.location.coordinates[0]}
             longitude={lot.location.coordinates[1]}
             id={lot._id}
+            floors={lot.floors}
+
           />
         ))}
       </div>

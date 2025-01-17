@@ -1,105 +1,92 @@
-import { FaWindowClose } from "react-icons/fa";
 import useLots from "../state/useLots";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Slot from "./Slot";
-import '../styles/slots.css'
+import "../styles/slots.css";
+import { BiSolidNavigation } from "react-icons/bi";
+import useLocationStore from "../state/useLocationState";
 function BookSlot() {
-  const [floor, setFloor] = useState(1);
-  const [floors, setFloors] = useState([1, 2, 3, 4]);
+  const [floors, setFloors] = useState([]);
   const setLot = useLots((state) => state.setSelectedLot);
-  const selectedSlot = useLots((state) => state.selectedSlot);
+  const selectedLot = useLots((state) => state.selectedLot);
+  const slots = useLots((state) => state.slots);
+  const currentFloor = useLots((state) => state.floor);
+  const setCurrentFloor = useLots((state) => state.setFloor);
+  const location = useLocationStore((state) => state.location);
+  useEffect(() => {
+    let floorArray = [];
+    for (let i = 1; i <= selectedLot?.floors; i++) {
+      floorArray.push(i);
+    }
+
+    setFloors(floorArray);
+  }, [selectedLot]);
+
   const handleClick = () => {
     setLot(null);
   };
-  const slots = [
-    // Floor 1 - Series A
-    ...Array.from({ length: 10 }, (_, i) => ({
-      slotId: `A${i + 1}`,
-      lotId: "1",
-      floor: 1,
-      status: i % 3 === 0, // Booked if index % 3 === 0
-      bookedBy: i % 3 === 0 ? "user1" : null,
-      bST: i % 3 === 0 ? new Date("2025-01-15T10:00:00Z") : null,
-      bET: i % 3 === 0 ? new Date("2025-01-16T20:00:00Z") : null,
-    })),
-    // Floor 1 - Series B
-    ...Array.from({ length: 8 }, (_, i) => ({
-      slotId: `B${i + 1}`,
-      lotId: "1",
-      floor: 1,
-      status: i % 4 === 0,
-      bookedBy: i % 4 === 0 ? "user2" : null,
-      bST: i % 4 === 0 ? new Date("2025-01-15T11:00:00Z") : null,
-      bET: i % 4 === 0 ? new Date("2025-01-16T13:00:00Z") : null,
-    })),
-    // Floor 1 - Series C
-    ...Array.from({ length: 6 }, (_, i) => ({
-      slotId: `C${i + 1}`,
-      lotId: "1",
-      floor: 1,
-      status: i % 2 === 0,
-      bookedBy: i % 2 === 0 ? "user3" : null,
-      bST: i % 2 === 0 ? new Date("2025-01-15T09:30:00Z") : null,
-      bET: i % 2 === 0 ? new Date("2025-01-16T12:30:00Z") : null,
-    })),
-    // Floor 2 - Series D
-    ...Array.from({ length: 8 }, (_, i) => ({
-      slotId: `D${i + 1}`,
-      lotId: "1",
-      floor: 2,
-      status: i % 2 !== 0,
-      bookedBy: i % 2 !== 0 ? "user4" : null,
-      bST: i % 2 !== 0 ? new Date("2025-01-15T08:00:00Z") : null,
-      bET: i % 2 !== 0 ? new Date("2025-01-16T15:00:00Z") : null,
-    })),
-    // Floor 3 - Series E
-    ...Array.from({ length: 5 }, (_, i) => ({
-      slotId: `E${i + 1}`,
-      lotId: "1",
-      floor: 3,
-      status: i % 2 === 0,
-      bookedBy: i % 2 === 0 ? "user5" : null,
-      bST: i % 2 === 0 ? new Date("2025-01-15T10:00:00Z") : null,
-      bET: i % 2 === 0 ? new Date("2025-01-16T18:00:00Z") : null,
-    })),
-    // Floor 4 - Series F
-    ...Array.from({ length: 3 }, (_, i) => ({
-      slotId: `F${i + 1}`,
-      lotId: "1",
-      floor: 4,
-      status: i % 2 !== 0,
-      bookedBy: i % 2 !== 0 ? "user6" : null,
-      bST: i % 2 !== 0 ? new Date("2025-01-15T07:00:00Z") : null,
-      bET: i % 2 !== 0 ? new Date("2025-01-16T20:00:00Z") : null,
-    })),
-  ];
+
+  const navigationDirections = () => {
+    const origin = `${location.latitude},${location.longitude}`;
+    const destination = `${selectedLot.latitude},${selectedLot.longitude}`;
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+    window.open(url, "_blank");
+  };
 
   return (
     <div className="w-full bg-zinc-50 h-full rounded-[7px] p-6 shadow-md">
-      <div className="text-2xl font-semibold h-[10%] flex justify-between">
-        <p>Select a slot</p>
-        <FaWindowClose
-          className="cursor-pointer hover:text-red-600"
-          onClick={handleClick}
-        />
+      <div className=" font-semibold h-[10%] flex justify-between">
+        <div className="flex gap-2">
+          <p className="text-2xl text-zinc-800">{selectedLot?.name}</p>
+          <p className="pt-0.5 text-xl text-zinc-600 font-normal">
+            - {selectedLot?.distance} away
+          </p>
+        </div>
+        <div className="flex">
+          <button
+            onClick={navigationDirections}
+            className="text-lg text-zinc-50 bg-blue-600 px-4 rounded-[7px] mr-2 h-12 flex items-center gap-3">
+            <BiSolidNavigation />
+            <p>Directions</p>
+          </button>
+          <button
+            onClick={handleClick}
+            className="text-lg text-zinc-50 bg-red-500 px-6 rounded-[7px] h-12">
+            Close
+          </button>
+        </div>
       </div>
       <div className="h-[90%] flex flex-col gap-4">
         <div className="flex gap-4 h-[8.5%]">
+          <p className="text-lg self-end">Select Floor: </p>
           {floors.map((floor) => (
             <div
               key={floor}
-              onClick={() => setFloor(floor)}
+              onClick={() => setCurrentFloor(floor)}
               className="px-5 text-md py-1.5 border bg-[#FFC71F] rounded-lg cursor-pointer hover:bg-[#FFb71F] hover:shadow-sm">
               Floor {floor}
             </div>
           ))}
         </div>
         <div className="h-[88%] w-full bg-white rounded-[7px] flex flex-wrap gap-4 p-6 items-center justify-center overflow-auto slot">
-        
           {slots
-            .filter((slot) => slot.floor === floor)
+            .filter((slot) => slot.floor === currentFloor)
+            .sort((a, b) => {
+              if (a.slotType < b.slotType) return 1;
+              if (a.slotType > b.slotType) return -1;
+              return a.slotId - b.slotId;
+            })
             .map((slot, index) => (
-              <Slot key={index} id={slot.slotId} status={slot.status} bET={slot.bET?.toISOString()}/>
+              <Slot
+                key={index}
+                id={slot.slotId}
+                slotType={slot.slotType}
+                _id={slot._id}
+                lotId={slot.lotId}
+                status={slot.status}
+                bET={slot.bET?.toISOString()}
+                price={selectedLot?.price}
+                bikePrice={selectedLot?.bikePrice}
+              />
             ))}
         </div>
       </div>

@@ -76,19 +76,12 @@ export const mapStyle = [
         ]
     },
     {
-        "featureType": "poi.park",
-        "elementType": "geometry.fill",
+        "featureType": "poi",
         "stylers": [
             {
-                "color": "#b6c54c"
-            },
-            {
-                "lightness": 40
-            },
-            {
-                "saturation": -40
+                "visibility": "off"
             }
         ]
-    },
-    {}
+    }
+    
 ]

@@ -5,10 +5,12 @@ import { FaLocationCrosshairs } from "react-icons/fa6";
 import Lots from "../components/Lots";
 import useLots from "../state/useLots";
 import BookSlot from "../components/BookSlot";
+import Payment from "../components/Payment";
 
 function FindParking() {
   const { fetchLocation } = useFetchUserLocation();
   const selectedLot = useLots((state) => state.selectedLot);
+  const isBooking = useLots((state) => state.isBooking);
   useEffect(() => {
     fetchLocation();
   }, [fetchLocation]);
@@ -31,7 +33,7 @@ function FindParking() {
               ? "hidden"
               : "w-1/2 pr-12 pt-4 transition-all duration-200"
           } `}>
-          <BookSlot />
+          {isBooking?<Payment />:<BookSlot />}
         </div>
       </div>
       <div className="h-[35%] bg-gradient-to-t from-zinc-200 from-1%">

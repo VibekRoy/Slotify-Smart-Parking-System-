@@ -14,17 +14,33 @@ function LotCard({
   latitude,
   longitude,
   id,
+  floors,
 }) {
   const setSelectedLot = useLots((state) => state.setSelectedLot);
   const setSlots = useLots((state) => state.setSlots);
+  const setCurrentFloor = useLots((state) => state.setFloor);
+  const setBooking = useLots((state) => state.setBooking);
   const apiURL = import.meta.env.VITE_API_URL;
   const handleClick = async () => {
-    setSelectedLot({ name, latitude, longitude, id, price, bikePrice, address });
+    setBooking(false);
+    setCurrentFloor(1);
+    setSelectedLot({
+      name,
+      latitude,
+      longitude,
+      id,
+      price,
+      bikePrice,
+      address,
+      floors,
+      distance,
+      duration,
+    });
     try {
       await axios
         .get(`${apiURL}/slots/${id}/viewslots`)
         .then((res) => {
-          setSlots(res.data);
+          setSlots(res.data.slots);
         })
         .catch((err) => console.log(err));
     } catch (error) {
@@ -45,7 +61,7 @@ function LotCard({
         <div>
           <p className="text-lg font-semibold leading-[1.3rem] pb-1">{name}</p>
           <p className="text-sm text-zinc-700 w-[80%] leading-[1.1rem]">
-            {address.split(",").slice(1, 4).join(",")}
+            {address.split(",").slice(1, 3).join(",")}
           </p>
         </div>
         <div>
@@ -89,6 +105,7 @@ LotCard.propTypes = {
   address: PropTypes.string.isRequired,
   latitude: PropTypes.number.isRequired,
   longitude: PropTypes.number.isRequired,
+  floors: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
 };
 
