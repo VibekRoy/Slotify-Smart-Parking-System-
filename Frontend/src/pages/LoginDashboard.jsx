@@ -1,4 +1,4 @@
-import useUserAuth from "../state/useAuth";
+import useUserAuth from "../utils/useAuth";
 
 function LoginDashboard() {
   const { isAuthenticated, userName } = useUserAuth();

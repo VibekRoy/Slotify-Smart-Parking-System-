@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import "../styles/Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import useUserAuth from "../state/useAuth";
+import useUserAuth from "../utils/useAuth";
 import { useEffect, useState } from "react";
 function Signup() {
   const navigate = useNavigate();
@@ -184,7 +184,9 @@ function Signup() {
             </button>
           </form>
           <div className="pt-12 flex flex-col items-end">
-            <p className="text-gray-600 text-lg pb-3">Already parked here? Log in now!</p>
+            <p className="text-gray-600 text-lg pb-3">
+              Already parked here? Log in now!
+            </p>
             <button className="submit-button" onClick={handleLogin}>
               Login
             </button>

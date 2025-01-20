@@ -1,0 +1,47 @@
+.payment-input {
+  @apply bg-white w-full h-12 rounded-lg p-4 text-sm outline-none border-2 border-[#ffc71f69] focus:border-[#FFC71F];
+}
+
+.payment-label {
+  @apply absolute transform text-sm text-[#FFC71F] bg-white px-1 transition-all peer-placeholder-shown:text-sm py-0.5
+    peer-placeholder-shown:transform 
+    peer-placeholder-shown:translate-x-4 
+    peer-placeholder-shown:translate-y-3 
+    peer-placeholder-shown:text-gray-600 
+    
+    [&:not(peer-placeholder-shown)]:transform 
+    [&:not(peer-placeholder-shown)]:translate-x-2 
+    [&:not(peer-placeholder-shown)]:-translate-y-2 
+    [&:not(peer-placeholder-shown)]:text-xs
+    [&:not(peer-placeholder-shown)]:text-[#FFC71F] 
+    [&:not(peer-placeholder-shown)]:bg-white 
+    [&:not(peer-placeholder-shown)]:px-1;
+}
+
+.payment-input-2 {
+  @apply bg-white w-full h-12 rounded-lg px-4  py-2 text-sm outline-none border-2 border-[#ffc71f69] focus:border-[#FFC71F];
+}
+
+.payment-input-3 {
+  @apply bg-white w-full h-12 rounded-lg p-4 text-sm outline-none border-2 border-[#ffc71f69] focus:border-[#FFC71F];
+}
+
+.payment-label-3 {
+  @apply absolute transform text-sm text-[#FFC71F] bg-white px-1 transition-all peer-placeholder-shown:text-sm py-0.5
+    peer-placeholder-shown:transform 
+    peer-placeholder-shown:translate-x-4 
+    peer-placeholder-shown:translate-y-3 
+    peer-placeholder-shown:text-gray-600 
+    
+    [&:not(peer-placeholder-shown)]:transform 
+    [&:not(peer-placeholder-shown)]:translate-x-2 
+    [&:not(peer-placeholder-shown)]:-translate-y-2 
+    [&:not(peer-placeholder-shown)]:text-xs
+    [&:not(peer-placeholder-shown)]:text-[#FFC71F] 
+    [&:not(peer-placeholder-shown)]:bg-white 
+    [&:not(peer-placeholder-shown)]:px-1;
+}
+
+.submit-button-payment{
+  @apply flex  border-2 border-blue-500 bg-blue-500 text-lg text-white px-3 py-2.5 rounded-md font-medium hover:bg-transparent cursor-pointer transition-all duration-200 hover:text-black
+}

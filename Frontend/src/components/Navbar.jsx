@@ -4,7 +4,7 @@ import { HiHome } from "react-icons/hi2";
 import { IoIosInformationCircle } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-import useUserAuth from "../state/useAuth";
+import useUserAuth from "../utils/useAuth";
 import axios from "axios";
 function Navbar() {
   const navigate = useNavigate();

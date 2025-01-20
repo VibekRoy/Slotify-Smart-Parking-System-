@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { TbLocationFilled } from "react-icons/tb";
 import { FaCar, FaMotorcycle, FaCarSide } from "react-icons/fa";
-import useLots from "../state/useLots";
+import useLots from "../utils/useLots";
 import axios from "axios";
+import { toast } from "react-toastify";
 function LotCard({
   index,
   name,
@@ -42,17 +43,17 @@ function LotCard({
         .then((res) => {
           setSlots(res.data.slots);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => toast(err.response.data.message));
     } catch (error) {
-      console.log(error);
+      toast(error.response.data.message);
     }
   };
-  const buttonStyle = `flex border-2 border-[#FFC71f] bg-[#FFC71F] text-xl font-semibold px-3 py-2.5 font-medium hover:bg-transparent cursor-pointer transition-all duration-200 hover:text-[#ffc71f] self-end rounded-xl`;
+  const buttonStyle = `flex border-2 border-[#FFC71f] bg-[#FFC71F] text-xl font-semibold px-3 py-2.5 font-medium hover:bg-transparent cursor-pointer hover:scale-[1.01] transition-all duration-200 hover:text-[#ffc71f] self-end rounded-lg`;
   return (
-    <div className="h-48 bg-white rounded-3xl p-5 flex  w-[550px] flex-shrink-0 hover:bg-zinc-100">
-      <div className=" w-[30%]">
+    <div className="h-48 bg-white rounded-xl p-5 flex  w-[550px] flex-shrink-0 hover:bg-zinc-50 transition-all ease-in-out duration-300 hover:scale-[1.03]">
+      <div className=" w-[30%] flex ">
         <img
-          className="rounded-2xl"
+          className="rounded-md "
           src={`../src/assets/LotImages/${index % 6}.jpg`}
           alt="LotImages"
         />

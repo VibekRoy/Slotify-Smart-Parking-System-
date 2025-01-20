@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import MapComponent from "../components/MapComponent";
-import useFetchUserLocation from "../state/useFetchLocation";
+import useFetchUserLocation from "../utils/useFetchLocation";
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import Lots from "../components/Lots";
-import useLots from "../state/useLots";
+import useLots from "../utils/useLots";
 import BookSlot from "../components/BookSlot";
 import Payment from "../components/Payment";
 
@@ -33,10 +33,10 @@ function FindParking() {
               ? "hidden"
               : "w-1/2 pr-12 pt-4 transition-all duration-200"
           } `}>
-          {isBooking?<Payment />:<BookSlot />}
+          {isBooking ? <Payment /> : <BookSlot />}
         </div>
       </div>
-      <div className="h-[35%] bg-gradient-to-t from-zinc-200 from-1%">
+      <div className="h-[35%] bg-gradient-to-t from-zinc-300 from-10%">
         <Lots />
       </div>
     </div>

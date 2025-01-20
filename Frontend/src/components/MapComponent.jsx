@@ -1,8 +1,8 @@
 import { DirectionsRenderer, GoogleMap, Marker } from "@react-google-maps/api";
-import useLocationStore from "../state/useLocationState";
+import useLocationStore from "../utils/useLocationState";
 import { mapStyle } from "../styles/mapStyle";
 import "../styles/MapComponent.css";
-import useLots from "../state/useLots";
+import useLots from "../utils/useLots";
 import { useEffect } from "react";
 
 const MapComponent = () => {
@@ -17,6 +17,7 @@ const MapComponent = () => {
     height: "100%",
     borderRadius: "7px",
     boxShadow: `0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)`,
+    border: `1px solid #e5e7eb`,
   };
 
   const center = location

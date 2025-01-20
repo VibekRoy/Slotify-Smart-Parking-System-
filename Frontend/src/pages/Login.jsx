@@ -2,16 +2,17 @@ import { useForm } from "react-hook-form";
 import "../styles/Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import useUserAuth from "../state/useAuth";
+import useUserAuth from "../utils/useAuth";
 import { useEffect, useState } from "react";
 function Login() {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const login = useUserAuth((state) => state.login);
+
   const { isAuthenticated } = useUserAuth();
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/dashboard");
+    if (isAuthenticated) navigate("/find");
   }, [isAuthenticated, navigate]);
 
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -34,7 +35,7 @@ function Login() {
       )
       .then((res) => {
         if (res.status === 200) {
-          login(res.data.user);
+          login(res.data.user, res.data.userID);
           navigate("/dashboard");
         }
       })
@@ -123,15 +124,14 @@ function Login() {
             </div>
           </form>
           <div className="pt-12 flex flex-col items-start">
-          <p className="pb-3 text-gray-600 text-lg">
-            No account? No problem—register now and park smarter! 🅿️🚀
-          </p>
-          <button className="submit-button" onClick={handleSignup}>
-            Signup
-          </button>
+            <p className="pb-3 text-gray-600 text-lg">
+              No account? No problem—register now and park smarter! 🅿️🚀
+            </p>
+            <button className="submit-button" onClick={handleSignup}>
+              Signup
+            </button>
+          </div>
         </div>
-        </div>
-        
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
-import useLocationStore from "../state/useLocationState";
+import useLocationStore from "../utils/useLocationState";
 import LotCard from "./LotCard";
 import "../styles/lot.css";
-import useLots from "../state/useLots";
+import useLots from "../utils/useLots";
 function Lots() {
   const apiUrl = import.meta.env.VITE_API_URL;
   const location = useLocationStore((state) => state.location);
@@ -75,7 +75,6 @@ function Lots() {
             longitude={lot.location.coordinates[1]}
             id={lot._id}
             floors={lot.floors}
-
           />
         ))}
       </div>
