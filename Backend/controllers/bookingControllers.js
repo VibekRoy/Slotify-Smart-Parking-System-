@@ -219,8 +219,8 @@ export const getBookingHistory = async (req, res) => {
 
   try {
     const history = await BookingHistory.find({ userId: userId })
-      .populate("lotId", "name location")
-      .populate("slotId", "slotId")
+      .populate("lotId", "name")
+      .populate("slotId", "slotId slotType floor")
       .sort({ createdAt: -1 });
 
     res.status(200).json({ message: "Booking history fetched", history });
@@ -230,14 +230,3 @@ export const getBookingHistory = async (req, res) => {
       .json({ message: "Error fetching history", error: error.message });
   }
 };
-
-/*fuck
-
-cases:
-case 1: slot already booked for 4pm(hST) to 8pm (hET)
-        slot booking for 9pm(bST) to 11pm(bET)
-
-
-
-
-*/

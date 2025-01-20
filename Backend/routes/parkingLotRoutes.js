@@ -12,6 +12,7 @@ import {
   bookSlot,
   confirmBooking,
   extendSlot,
+  getBookingHistory,
 } from "../controllers/bookingControllers.js";
 
 const slotRoutes = express.Router();
@@ -31,5 +32,7 @@ slotRoutes.post("/confirm", protectedRoute, confirmBooking);
 slotRoutes.patch("/extendslot", protectedRoute, extendSlot);
 
 slotRoutes.get("/distance", getDistance);
+
+slotRoutes.get("/history", protectedRoute, getBookingHistory);
 
 export default slotRoutes;
