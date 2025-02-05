@@ -13,7 +13,7 @@ const io = new Server(server);
 connectDB();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://slotify-j08i.onrender.com",
     credentials: true,
   })
 );
@@ -23,6 +23,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(userRoutes);
 app.use("/admin", adminRouter);
 app.use("/slots", slotRoutes);
-
 
 server.listen(9000, () => console.log("Server started at PORT: 9000"));
