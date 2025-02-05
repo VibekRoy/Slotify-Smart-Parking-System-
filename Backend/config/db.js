@@ -14,7 +14,4 @@ export const connectDB = () => {
   }
 };
 
-export const redis = new Redis({
-  host: "redis://red-cuhqdea3esus73cnttsg:6379",
-  port: 6379,
-});
+export const redis = new Redis(process.env.REDIS_URL);
