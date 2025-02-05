@@ -13,7 +13,7 @@ const io = new Server(server);
 connectDB();
 app.use(
   cors({
-    origin: "https://slotify-j08i.onrender.com",
+    origin: process.env.FRONTEND,
     credentials: true,
   })
 );
