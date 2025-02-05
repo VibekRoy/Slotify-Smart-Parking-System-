@@ -12,7 +12,7 @@ function Login() {
   const { isAuthenticated } = useUserAuth();
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/find");
+    if (isAuthenticated) navigate("/");
   }, [isAuthenticated, navigate]);
 
   const apiUrl = import.meta.env.VITE_API_URL;

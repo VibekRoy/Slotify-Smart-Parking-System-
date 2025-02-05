@@ -39,7 +39,7 @@ function Slot({ id, _id, curDate, slotType, history }) {
         {id}
       </div>
       <img
-        src={`../src/assets/${slotType === "B" ? "Bike" : "Car"}${
+        src={`assets/${slotType === "B" ? "Bike" : "Car"}${
           isAvailable ? "" : "_Booked"
         }.svg`}
         alt="Car/Bike"

@@ -54,7 +54,7 @@ function LotCard({
       <div className=" w-[30%] flex ">
         <img
           className="rounded-md "
-          src={`../src/assets/LotImages/${index % 6}.jpg`}
+          src={`assets/LotImages/${index % 6}.jpg`}
           alt="LotImages"
         />
       </div>

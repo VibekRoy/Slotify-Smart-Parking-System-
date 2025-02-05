@@ -68,7 +68,7 @@ const MapComponent = () => {
       }}>
       {location && (
         <Marker
-          icon={{ url: "../src/assets/CLM.svg" }}
+          icon={{ url: "assets/CLM.svg" }}
           position={{ lat: location.latitude, lng: location.longitude }}
         />
       )}
@@ -81,7 +81,7 @@ const MapComponent = () => {
             lng: lot.location.coordinates[1],
           }}
           icon={{
-            url: "../src/assets/p-logo.png",
+            url: "assets/p-logo.png",
           }}
           title={lot.name}
         />
