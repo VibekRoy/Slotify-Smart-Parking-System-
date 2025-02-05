@@ -3,7 +3,8 @@
 
 Slotify is a MERN stack-based smart parking system that provides users with a seamless parking experience. It offers real-time slot booking, upfront payment, and slot management while utilizing modern tools like Redis for fast data access.
 ---
-##Demo
+
+## Demo
 
 You can checkout the project here : https://slotify-j08i.onrender.com/
 
