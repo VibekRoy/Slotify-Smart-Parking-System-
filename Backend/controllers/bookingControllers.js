@@ -61,7 +61,7 @@ export const bookSlot = async (req, res) => {
     // Step 3: Process Payment with Stripe
     try {
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card", "amazon_pay", "paypal"],
+        payment_method_types: ["card"],
         mode: "payment",
         success_url: `${process.env.SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.CANCEL_URL}`,
