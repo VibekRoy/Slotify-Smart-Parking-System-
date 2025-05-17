@@ -4,6 +4,7 @@ import { redis } from "../config/db.js";
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 let bookingDetails;
+let redisLockKey;
 
 const isTimeOverlapping = (history, newBST, newBET) => {
   return history.some(({ bST, bET }) => {
@@ -38,7 +39,7 @@ export const bookSlot = async (req, res) => {
     amount,
   } = req.body;
 
-  const redisLockKey = `lock:slot:${slotId}`;
+  redisLockKey = `lock:slot:${slotId}`;
 
   try {
     // Step 1: Acquire Redis Lock
@@ -103,7 +104,6 @@ export const bookSlot = async (req, res) => {
       pET,
     };
 
-    res.status(200).json({ sessionId });
   } catch (error) {
     // Release Redis Lock in case of errors
     await redis.del(redisLockKey);
